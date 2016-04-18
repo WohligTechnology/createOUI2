@@ -1,0 +1,42 @@
+{
+    "title": "All Users",
+    "desciption": "",
+    "pageType": "view",
+    "fields": [
+      {
+        "name":"id",
+        "isSort":"",
+      },
+      {
+        "name":"name",
+        "isSort":"",
+      },
+      {
+        "name":"email",
+        "isSort":"",
+      },
+      {
+        "name":"contact",
+        "isSort":"",
+      },
+
+    ],
+    "action": [
+      {
+        "name":"edit",
+        "icon":"edit",
+        "color":"blue",
+        "action":"editUser"
+      },
+      {
+        "name":"delete",
+        "icon":"delete",
+        "color":"red",
+        "action":"deleteUser"
+      }
+    ],
+    "apiCall": {
+        "url": "",
+        "params": ""
+    },
+}
