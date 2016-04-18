@@ -276,11 +276,11 @@ gulp.task('watch:all', function() {
   connect.server({
     root: './',
     livereload: true,
-    port: 82,
+    port: 8080,
   });
   gulp.src(__filename)
     .pipe(open({
-      uri: 'http://localhost:82'
+      uri: 'http://localhost:8080'
     }));
   gulp.watch(['./**/*.html', './sass/*.scss', './js/*.js'], ['sass:development', 'connect:html', 'connect:js']);
 });

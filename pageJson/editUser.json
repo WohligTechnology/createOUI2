@@ -1,0 +1,42 @@
+{
+    "title": "Edit User",
+    "desciption": "",
+    "pageType": "edit",
+    "fields": [
+      {
+        "name":"id",
+        "isSort":"",
+        "tableRef":"_id"
+      },
+      {
+        "name":"name",
+        "isSort":"",
+        "tableRef":"to"
+      },
+      {
+        "name":"email",
+        "isSort":"",
+        "tableRef":"from"
+      },
+      {
+        "name":"contact",
+        "isSort":"",
+        "tableRef":"reason"
+      }
+
+    ],
+    "action": [
+      {
+        "name":"submit",
+        "action":"submitUser"
+      },
+      {
+        "name":"cancel",
+        "action":"cancelUser"
+      }
+    ],
+    "apiCall": {
+        "url": "http://192.168.1.127:1337/Accounts/saveData",
+        "params": "_id"
+    }
+}
