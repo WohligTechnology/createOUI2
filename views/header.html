@@ -5,14 +5,7 @@
   <span ng-bind="template.title"></span>
 </h2>
 <span flex></span>
-<md-button aria-label="Add Projects" class="md-raised {{hideme}}" ng-click="createProject()">
-  <!-- <ng-md-icon icon="add" size="10" style="fill: black;"></ng-md-icon> -->
-  Create
-</md-button>
-<md-button aria-label="Add Projects" class="md-raised {{hide}}" ng-click="createApi()">
-  <!-- <ng-md-icon icon="add" size="10" style="fill: black;"></ng-md-icon> -->
-  Create
-</md-button>
+
 <md-autocomplete
           md-search-text="searchForm.name"
           md-items="item in ctrl.querySearch(searchForm.name)"

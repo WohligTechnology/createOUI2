@@ -22,6 +22,13 @@ templateservicemod.service('TemplateService', function() {
         return data;
     };
 
+    this.jsonType = function(page) {
+        this.init();
+        var data = this;
+        data.content = "views/type/" + page + ".html";
+        return data;
+    };
+
     this.init();
 
 });
