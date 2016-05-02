@@ -37,6 +37,39 @@
         "icon":"delete",
         "color":"red",
         "action":"deleteUser"
+      },
+      {
+        "name":"print",
+        "icon":"print",
+        "color":"red",
+        "action":"print"
+      }
+    ],
+    "button": [
+      {
+        "name":"excelexport",
+        "icon":"print",
+        "color":"blue",
+        "action":"excelexport"
+      },
+      {
+        "name":"uploadcsv",
+        "icon":"delete",
+        "color":"red",
+        "action":"uploadcsv"
+      }
+
+    ],
+    "filter": [
+      {
+        "name":"category",
+        "url":"http://192.168.1.127:1337/Accounts/getAll"
+      },
+      {
+        "name":"uploadcsv",
+        "icon":"delete",
+        "color":"red",
+        "action":"uploadcsv"
       }
     ],
     "apiCall": {

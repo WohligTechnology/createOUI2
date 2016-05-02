@@ -5,23 +5,30 @@
     "fields": [
       {
         "name":"id",
-        "isSort":"",
-        "tableRef":"_id"
-      },
-      {
-        "name":"name",
-        "isSort":"",
-        "tableRef":"to"
+        "type":"select",
+        "tableRef":"_id",
+        "placeholder":"Enter name",
+        "id":"input1",
+        "validation":["required","trim","unique"],
+        "url":""
       },
       {
         "name":"email",
-        "isSort":"",
-        "tableRef":"from"
+        "type":"email",
+        "tableRef":"email",
+        "placeholder":"Enter email",
+        "id":"input2",
+        "validation":["required","trim","unique"],
+        "url":""
       },
       {
-        "name":"contact",
-        "isSort":"",
-        "tableRef":"reason"
+        "name":"accesslevel",
+        "type":"select",
+        "tableRef":"accesslevel",
+        "placeholder":"Enter accesslevel",
+        "id":"input3",
+        "validation":[],
+        "url":""
       }
 
     ],
@@ -38,5 +45,14 @@
     "apiCall": {
         "url": "http://192.168.1.127:1337/Accounts/saveData",
         "params": "_id"
-    }
+    },
+    "preApi": {
+        "url": "http://192.168.1.127:1337/Accounts/saveData"
+    },
+    "sidemenu":[{
+    "url":"",
+    "anchor":"",
+    "state":"",
+    "action":""
+      }]
 }
