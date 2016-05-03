@@ -8,17 +8,18 @@
             <div class="row">
                 <div class="col-md-8">
                     <form name="plan">
-                        <div class="form-group" ng-repeat="field in json.fields track by $index">
-                            <label for="{{field.id}}"><b>{{field.name}}</b></label>
-                            <input name="{{field.name}}" ng-model="field.{{field.tableRef}}" type={{field.type}} class="form-control" id="{{field.id}}" placeholder="{{field.placeholder}}" ng-if="field.type==text">
-                            <div class="form-group">
-                                <label for="singleSelect"> Single select: </label>
-                                <br>
-                                <select name="{{field.name}}" ng-model="field.{{field.tableRef}}">
-                                    <option value="option-1">Option 1</option>
-                                    <option value="option-2">Option 2</option>
-                                </select>
-                                <br>
+                        <div class="form-group" ng-repeat="field in json.fields track by $index" >
+                            <div ng-if="field.type=='text' || field.type=='email'">
+                                <label for="{{field.id}}"><b>{{field.name}}</b></label>
+                                <input name="{{field.name}}" ng-model="field.model" type={{field.type}} class="form-control" id="{{field.id}}" placeholder="{{field.placeholder}}">
+                            </div>
+                            <!-- // SELECT -->
+                            <div ng-if="field.type=='select'">
+                                <label for="{{field.id}}">{{field.name}} </label>
+                                <br>{{optionitem}}
+                               <select ng-model="field.model" ng-options="item._id as item.name for item in field.url">
+                            </select>
+                            <br>
                             </div>
                         </div>
                         <!-- <div class="form-group">
@@ -38,11 +39,15 @@
               </div>
             </div> -->
                         <div class="upload-img text-center mar30">
-                            <button class="btn btn-sm btn-info" ng-class="{'disabled' : !plan.$valid }" ng-click="submitForm(plan)">Save</button>
+                            <button class="btn btn-sm btn-info" ng-class="{'disabled' : !plan.$valid }" ng-click="submitForm(plan)" >Save</button>
                             <a ui-sref="plan()">
                                 <button class="btn btn-sm btn-info">Cancel</button>
                             </a>
+
+
                         </div>
+                          <button class="btn btn-sm btn-info" ng-click="makeReadyForApi()" >
+                          API</button>
                     </form>
                 </div>
             </div>
