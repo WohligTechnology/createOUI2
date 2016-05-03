@@ -25,15 +25,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.navigation = NavigationService.getnav();
     var jsonName = $stateParams.jsonName;
     $http.get("./pageJson/" + jsonName + ".json").success(function(data) {
-
         $scope.json = data;
         console.log($scope.json);
-        if(data.pageType == "create" || data.pageType == "edit") {
-          _.each($scope.json.fields,function(n) {
-            if(n.type=="select") {
-              n.model = n.url[0]._id;
-            }
-          });
+        if (data.pageType == "create" || data.pageType == "edit") {
+            _.each($scope.json.fields, function(n) {
+                if (n.type == "select") {
+                    n.model = n.url[0]._id;
+                }
+            });
         }
 
         $scope.template = TemplateService.jsonType(data.pageType);
@@ -42,11 +41,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         });
     });
 
-
     $scope.makeReadyForApi = function() {
         var data = {};
-        _.each($scope.json.fields,function(n) {
-          data[n.tableRef] = n.model;
+        _.each($scope.json.fields, function(n) {
+            data[n.tableRef] = n.model;
         });
         console.log(data);
     };

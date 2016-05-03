@@ -1,19 +1,30 @@
 <section>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <strong>{{json.title}}</strong>
-    </div>
-    <div class="panel-body">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <strong>{{json.title}}</strong>
+        </div>
+        <div class="panel-body">
 
-      <div class="row">
-        <div class="col-md-8">
-              {{results}}
-          <form name="plan">
-            <div class="form-group">
-              <!-- <label for="exampleInputName1">Id</label> -->
-              <input name="id" ng-model="results._id" type="text" class="form-control" id="exampleInputName1" placeholder="User Id">
-            </div>
-            <div class="form-group">
+            <div class="row">
+                <div class="col-md-8">
+
+                    <form name="plan">
+                        <div class="form-group" ng-repeat="field in json.fields track by $index">
+                            <div ng-if="field.type=='text' || field.type=='email'">
+                                <label for="{{field.id}}">{{field.name}}</label>
+                                <input name="{{field.name}}" ng-model="field.model" type={{field.type}} class="form-control" id="{{field.id}}" placeholder="{{field.placeholder}}">
+                            </div>
+
+                            <!-- // SELECT -->
+                            <div ng-if="field.type=='select'">
+                                <label for="{{field.id}}">{{field.name}} </label>
+                                <br>
+                                <select ng-model="field.model" ng-options="item._id as item.name for item in field.url">
+                                </select>
+                                <br>
+                            </div>
+                        </div>
+                        <!-- <div class="form-group">
               {{results[json.fields.tableRef]}}
               <label for="exampleInputName2">Name</label>
               <input name="name" capitalize-first required ng-model="results.tableRef.from" type="text" class="form-control" id="exampleInputName2" placeholder="Enter Name">
@@ -24,22 +35,22 @@
               <textarea name="description" ng-model="results.tableRef.to" class="form-control" required></textarea>
               <div class="error-msg" ng-show="plan.description.$error.required && plan.description.$touched">Please Enter Description.
               </div>
+            </div> -->
+                        <div class="upload-img text-center mar30">
+                            <button class="btn btn-sm btn-info" ng-class="{'disabled' : !plan.$valid }" ng-click="makeReadyForApi()">Save</button>
+                            <a ui-sref="plan()">
+                                <button class="btn btn-sm btn-info">Cancel</button>
+                            </a>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="upload-img text-center mar30">
-              <button class="btn btn-sm btn-info" ng-class="{'disabled' : !plan.$valid }" ng-click="submitForm(plan)">Save</button>
-              <a ui-sref="plan()">
-                <button class="btn btn-sm btn-info">Cancel</button>
-              </a>
-            </div>
-          </form>
-        </div>
-      </div>
 
 
-      <!-- <div class="text-center" ng-show="formComplete">
+            <!-- <div class="text-center" ng-show="formComplete">
               <h3>Submitted Successfully, Thank You!</h3>
           </div> -->
 
+        </div>
     </div>
-  </div>
 </section>
