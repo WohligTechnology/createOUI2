@@ -4,8 +4,8 @@
     "pageType": "create",
     "fields": [
       {
-        "name":"id",
-        "type":"select",
+        "name":"name",
+        "type":"text",
         "tableRef":"_id",
         "placeholder":"Enter name",
         "id":"input1",
@@ -28,7 +28,7 @@
         "placeholder":"Enter accesslevel",
         "id":"input2",
         "validation":[],
-        "url":""
+        "url":"http://localhost:1337/team/findLimited"
       }
 
     ],
