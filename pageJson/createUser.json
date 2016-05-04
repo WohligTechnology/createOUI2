@@ -27,6 +27,19 @@
             "model": "email",
             "validation": [],
             "url": [{
+                "name": "Admin"
+            }, {
+                "name": "Operator"
+            }]
+        }, {
+            "name": "Team",
+            "type": "selectFromTable",
+            "tableRef": "team",
+            "placeholder": "Choose team",
+            "id": "input4",
+            "model": "team",
+            "validation": [],
+            "url": [{
                 "_id": "5726e343c150b33309f5bfa6",
                 "timestamp": "2016-05-02T05:18:59.646Z",
                 "name": "India",
@@ -42,6 +55,15 @@
                 "name": "aus",
                 "__v": 0
             }]
+        }, {
+            "name": "Image",
+            "type": "image",
+            "tableRef": "image",
+            "placeholder": "Enter image",
+            "id": "input5",
+            "model": "",
+            "validation": [],
+            "url": ""
         }
 
     ],
@@ -50,16 +72,13 @@
         "action": "submitUser"
     }, {
         "name": "cancel",
-        "action": "cancelUser"
-    }],
-    "button": [{
-        "name": "cancel",
         "url": "http://192.168.1.127:1337/Accounts/saveData"
     }],
+
     "apiCall": {
-        "url": "http://192.168.1.127:1337/Accounts/saveData",
-        "params": ""
+        "url": "creato/save"
     },
+
     "sidemenu": [{
         "url": "",
         "anchor": "",

@@ -1,4 +1,7 @@
-
+// var adminurl = "http://blazen.io/";
+var adminurl = "http://localhost:1337/";
+var imgpath = adminurl + "upload/readFile";
+var uploadurl = adminurl + "upload";
 var navigationservice = angular.module('navigationservice', [])
 
 .factory('NavigationService', function($http) {
@@ -28,8 +31,8 @@ var navigationservice = angular.module('navigationservice', [])
       }
       return menuname;
     },
-    saveProject: function(data, successCallback, errorCallback) {
-      $http.post(adminURL + "project/save", data).success(successCallback).error(errorCallback);
+    saveApi: function(data,apiName, successCallback, errorCallback) {
+      $http.post(adminurl + apiName, data).success(successCallback).error(errorCallback);
     },
     deleteProject: function(data, successCallback, errorCallback) {
       $http.post(adminURL + "project/delete", data).success(successCallback).error(errorCallback);
@@ -40,9 +43,9 @@ var navigationservice = angular.module('navigationservice', [])
     findOneProject: function(data, successCallback, errorCallback) {
       $http.post(adminURL + "project/findOne", data).success(successCallback).error(errorCallback);
     },
-    saveApi: function(data, successCallback, errorCallback) {
-      $http.post(adminURL + "api/save", data).success(successCallback).error(errorCallback);
-    },
+    // saveApi: function(data, successCallback, errorCallback) {
+    //   $http.post(adminURL + "api/save", data).success(successCallback).error(errorCallback);
+    // },
     deleteApi: function(data, successCallback, errorCallback) {
       $http.post(adminURL + "api/delete", data).success(successCallback).error(errorCallback);
     },

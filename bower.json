@@ -32,7 +32,8 @@
     "svg-morpheus": "https://github.com/alexk111/SVG-Morpheus.git#~0.1.8",
     "angular-ui-sortable": "~0.13.4",
     "angular-clipboard": "~1.2.1",
-    "js-beautify": "https://github.com/beautify-web/js-beautify.git#~1.5.10"
+    "js-beautify": "https://github.com/beautify-web/js-beautify.git#~1.5.10",
+    "angularjs-imageupload-directive": "https://github.com/Mischi/angularjs-imageupload-directive.git"
   },
   "resolutions": {
     "angular": "1.4.8"

@@ -15,6 +15,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.menutitle = NavigationService.makeactive("Users");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
+    $scope.field = {};
+    $scope.onimageupload = function(data) {
+        console.log(data);
+    };
 })
 
 .controller('jsonViewCtrl', function($scope, TemplateService, NavigationService, $timeout, $stateParams, $http) {
@@ -42,11 +46,26 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     });
 
     $scope.makeReadyForApi = function() {
-        var data = {};
+        var data={};
+        // CONVERT MODEL NAMES SAME AS FIELD NAMES
         _.each($scope.json.fields, function(n) {
             data[n.tableRef] = n.model;
         });
-        console.log(data);
+        $scope.formData = data;
+        $scope.apiName = $scope.json.apiCall.url;
+
+        // CALL GENERAL API
+        NavigationService.saveApi($scope.formData, $scope.apiName, function(data) {
+            console.log(data);
+            // showToast("Project Saved Successfully");
+            console.log("Success");
+
+        }, function() {
+            // showToast("Error saving the Project");
+            console.log("Fail");
+        });
+
+
     };
 
 })
