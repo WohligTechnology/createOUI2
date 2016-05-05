@@ -48,7 +48,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             NavigationService.findProjects($scope.apiName,pagination, function(data) {
                 console.log(data.data);
                 console.log("Success");
-
+                $scope.json.fields=data.data;
             }, function() {
                 console.log("Fail");
             });
