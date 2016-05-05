@@ -4,24 +4,29 @@
     "pageType": "view",
     "fields": [
       {
-        "name":"id",
+        "name":"Id",
         "isSort":"",
         "tableRef":"_id"
       },
       {
-        "name":"name",
+        "name":"Name",
         "isSort":"",
-        "tableRef":"to"
+        "tableRef":"name"
       },
       {
-        "name":"email",
+        "name":"Email",
         "isSort":"",
-        "tableRef":"from"
+        "tableRef":"email"
       },
       {
-        "name":"contact",
+        "name":"Accesslevel",
         "isSort":"",
-        "tableRef":"reason"
+        "tableRef":"accesslevel"
+      },
+      {
+        "name":"Team",
+        "isSort":"",
+        "tableRef":"team"
       }
 
     ],
@@ -73,7 +78,7 @@
       }
     ],
     "apiCall": {
-        "url": "http://192.168.1.127:1337/Accounts/getAll",
+        "url": "creato/findLimited",
         "params": ""
     }
 }

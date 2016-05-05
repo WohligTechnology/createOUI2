@@ -14,12 +14,20 @@
                                 <label for="{{field.id}}">{{field.name}}</label>
                                 <input name="{{field.name}}" ng-model="field.model" type={{field.type}} class="form-control" id="{{field.id}}" placeholder="{{field.placeholder}}">
                             </div>
-
+                          
                             <!-- // SELECT -->
+                            <div ng-if="field.type=='selectFromTable'">
+                                <label for="{{field.id}}">{{field.name}} </label>
+                                <br>{{optionitem}}
+                                <select ng-model="field.model" ng-options="item._id as item.name for item in field.url">
+                                </select>
+                                <br>
+                            </div>
+                            <!-- // SELECT FROM TABLE-->
                             <div ng-if="field.type=='select'">
                                 <label for="{{field.id}}">{{field.name}} </label>
-                                <br>
-                                <select ng-model="field.model" ng-options="item._id as item.name for item in field.url">
+                                <br>{{optionitem}}
+                                <select ng-model="field.model" ng-options="item.name as item.name for item in field.url">
                                 </select>
                                 <br>
                             </div>

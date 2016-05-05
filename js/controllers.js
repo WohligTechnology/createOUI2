@@ -37,8 +37,23 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                     n.model = n.url[0]._id;
                 }
             });
-        }
+        } else if (data.pageType == "view") {
+            // call api for view data
+            $scope.apiName = $scope.json.apiCall.url;
+            var pagination = {
+                "search": "",
+                "pagenumber": "1",
+                "pagesize": "10"
+            };
+            NavigationService.findProjects($scope.apiName,pagination, function(data) {
+                console.log(data.data);
+                console.log("Success");
 
+            }, function() {
+                console.log("Fail");
+            });
+            console.log("hij");
+        }
         $scope.template = TemplateService.jsonType(data.pageType);
         $http.post(data.apiCall.url).success(function(data2) {
             $scope.results = data2.data;
@@ -46,7 +61,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     });
 
     $scope.makeReadyForApi = function() {
-        var data={};
+        var data = {};
         // CONVERT MODEL NAMES SAME AS FIELD NAMES
         _.each($scope.json.fields, function(n) {
             data[n.tableRef] = n.model;
