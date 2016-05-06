@@ -7,14 +7,14 @@
         <table class="responsive-table">
             <thead>
                 <tr>
-                    <th ng-repeat="field in json.fields">{{field.name}}</th>
+                    <th ng-repeat="field in json.fields">{{field.name}}</th>{{json.fields}}
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="result in results">
                     <td ng-repeat="field in json.fields">{{result[field.tableRef]}}</td>
-                    <td ng-repeat="action in json.action" ng-click="viewPage(field.name,field._id)">{{field.name}}{{field._id}}
+                    <td ng-repeat="action in json.action" ng-click="viewPage(field.name,field._id)">
                       <md-button aria-label="Expand" class="md-icon-button" >
                         <ng-md-icon class="" icon="{{action.icon}}" size="20" style="fill:{{action.color}};"></ng-md-icon>
                       </md-button>

@@ -48,16 +48,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             NavigationService.findProjects($scope.apiName,pagination, function(data) {
                 console.log(data.data);
                 console.log("Success");
-                $scope.json.fields=data.data;
+                $scope.json.tableData=data.data;
             }, function() {
                 console.log("Fail");
             });
             console.log("hij");
         }
         $scope.template = TemplateService.jsonType(data.pageType);
-        $http.post(data.apiCall.url).success(function(data2) {
-            $scope.results = data2.data;
-        });
     });
 
     $scope.makeReadyForApi = function() {
