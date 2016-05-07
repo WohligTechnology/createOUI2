@@ -40,8 +40,10 @@ var navigationservice = angular.module('navigationservice', [])
     findProjects: function(apiName,pagination, successCallback, errorCallback) {
       $http.post(adminurl + apiName,pagination).success(successCallback).error(errorCallback);
     },
-    findOneProject: function(data, successCallback, errorCallback) {
-      $http.post(adminURL + "project/findOne", data).success(successCallback).error(errorCallback);
+    findOneProject: function(apiName,urlParams, successCallback, errorCallback) {
+      console.log(apiName);
+      console.log(urlParams);
+      $http.post(adminurl + apiName,urlParams).success(successCallback).error(errorCallback);
     },
     // saveApi: function(data, successCallback, errorCallback) {
     //   $http.post(adminURL + "api/save", data).success(successCallback).error(errorCallback);

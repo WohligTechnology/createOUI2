@@ -21,22 +21,49 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     };
 })
 
-.controller('jsonViewCtrl', function($scope, TemplateService, NavigationService, $timeout, $stateParams, $http) {
+.controller('jsonViewCtrl', function($scope, TemplateService, NavigationService, $timeout, $stateParams, $http, $state, $filter) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("users");
     $scope.menutitle = NavigationService.makeactive("Users");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
-    var jsonName = $stateParams.jsonName;
+    var jsonArr = $stateParams.jsonName.split("¢");
+    var jsonName = jsonArr[0];
+    var urlParams = {};
+
+    var jsonParam1 = jsonArr[1];
+    var jsonParam2 = jsonArr[2];
+    var jsonParam3 = jsonArr[3];
+    var jsonParam4 = jsonArr[4];
+    var jsonParam5 = jsonArr[5];
+    var jsonParam6 = jsonArr[6];
+    var jsonParam7 = jsonArr[7];
+    var jsonParam8 = jsonArr[8];
+    var jsonParam9 = jsonArr[9];
+    console.log(jsonArr);
     $http.get("./pageJson/" + jsonName + ".json").success(function(data) {
+        _.each(data.urlFields, function(n, key) {
+            urlParams[n] = jsonArr[key + 1];
+        });
+        console.log(urlParams);
+
+
         $scope.json = data;
         console.log($scope.json);
         if (data.pageType == "create" || data.pageType == "edit") {
+            console.log(urlParams);
+            NavigationService.findOneProject($scope.json.preApi.url, urlParams, function(data) {
+
+                $scope.json.editData=data.data;
+            }, function() {
+                console.log("Fail");
+            });
             _.each($scope.json.fields, function(n) {
                 if (n.type == "select") {
                     n.model = n.url[0]._id;
                 }
             });
+
         } else if (data.pageType == "view") {
             // call api for view data
             $scope.apiName = $scope.json.apiCall.url;
@@ -45,10 +72,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 "pagenumber": "1",
                 "pagesize": "10"
             };
-            NavigationService.findProjects($scope.apiName,pagination, function(data) {
-                console.log(data.data);
-                console.log("Success");
-                $scope.json.tableData=data.data;
+            NavigationService.findProjects($scope.apiName, pagination, function(data) {
+                $scope.json.tableData = data.data.data;
             }, function() {
                 console.log("Fail");
             });
@@ -56,6 +81,26 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
         $scope.template = TemplateService.jsonType(data.pageType);
     });
+
+    // ACTION
+    $scope.performAction = function(action, result) {
+
+        // FOR EDIT
+        if (action.jsonPage == "editUser") {
+
+            var pageURL = action.jsonPage;
+            if (action.fieldsToSend) {
+                _.each(action.fieldsToSend, function(n) {
+                    pageURL += "¢" + $filter("getValue")(result, n);
+                });
+            }
+            $state.go("page", {
+                jsonName: pageURL
+            });
+
+
+        }
+    };
 
     $scope.makeReadyForApi = function() {
         var data = {};

@@ -26,7 +26,7 @@
       {
         "name":"Team",
         "isSort":"",
-        "tableRef":"team"
+        "tableRef":"team.name"
       }
 
     ],
@@ -35,7 +35,10 @@
         "name":"edit",
         "icon":"mode_edit",
         "color":"blue",
-        "action":"editUser"
+        "action":"editUser",
+        "jsonPage":"editUser",
+        "fieldsToSend":["_id","name"],
+        "callFindOne":"creato/findOne"
       },
       {
         "name":"delete",
@@ -63,7 +66,6 @@
         "color":"red",
         "action":"uploadcsv"
       }
-
     ],
     "filter": [
       {

@@ -2,6 +2,7 @@
     "title": "Edit User",
     "desciption": "",
     "pageType": "edit",
+    "urlFields":["_id","name"],
     "fields": [{
             "name": "Name",
             "type": "text",
@@ -9,7 +10,8 @@
             "placeholder": "Enter name",
             "id": "input1",
             "validation": ["required", "trim", "unique"],
-            "url": ""
+            "url": "",
+              "model": "name1"
         }, {
             "name": "Email",
             "type": "email",
@@ -17,14 +19,15 @@
             "placeholder": "Enter email",
             "id": "input2",
             "validation": ["required", "trim", "unique"],
-            "url": ""
+            "url": "",
+              "model": "email1"
         }, {
             "name": "Accesslevel",
             "type": "select",
             "tableRef": "accesslevel",
             "placeholder": "Enter accesslevel",
             "id": "input3",
-            "model": "email",
+            "model": "accesslevel1",
             "validation": [],
             "url": [{
                 "name": "Admin"
@@ -77,11 +80,11 @@
       }
     ],
     "apiCall": {
-        "url": "http://192.168.1.127:1337/Accounts/saveData",
+        "url": "Accounts/saveData",
         "params": "_id"
     },
     "preApi": {
-        "url": "http://localhost:1337/adminuser/findOne",
+        "url": "creato/findOne",
         "params":"_id"
     },
     "sidemenu":[{

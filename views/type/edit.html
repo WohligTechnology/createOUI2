@@ -12,9 +12,9 @@
                         <div class="form-group" ng-repeat="field in json.fields track by $index">
                             <div ng-if="field.type=='text' || field.type=='email'">
                                 <label for="{{field.id}}">{{field.name}}</label>
-                                <input name="{{field.name}}" ng-model="field.model" type={{field.type}} class="form-control" id="{{field.id}}" placeholder="{{field.placeholder}}">
+                                <input  ng-model="field.model" type={{field.type}} class="form-control" id="{{field.id}}" placeholder="{{field.placeholder}}">
                             </div>
-                          
+
                             <!-- // SELECT -->
                             <div ng-if="field.type=='selectFromTable'">
                                 <label for="{{field.id}}">{{field.name}} </label>
