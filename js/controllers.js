@@ -42,6 +42,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     var jsonParam9 = jsonArr[9];
     console.log(jsonArr);
     $http.get("./pageJson/" + jsonName + ".json").success(function(data) {
+        console.log(data);
         _.each(data.urlFields, function(n, key) {
             urlParams[n] = jsonArr[key + 1];
         });
@@ -54,7 +55,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             console.log(urlParams);
             NavigationService.findOneProject($scope.json.preApi.url, urlParams, function(data) {
 
-                $scope.json.editData=data.data;
+                $scope.json.editData = data.data;
+                $scope.json.editData.accesslevel = data.data.accesslevel;
+                $scope.json.editData.team = data.data.team;
+
+                console.log($scope.json.editData);
             }, function() {
                 console.log("Fail");
             });
@@ -104,19 +109,29 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     $scope.makeReadyForApi = function() {
         var data = {};
-        // CONVERT MODEL NAMES SAME AS FIELD NAMES
-        _.each($scope.json.fields, function(n) {
-            data[n.tableRef] = n.model;
-        });
-        $scope.formData = data;
+        if ($scope.json.pageType !== 'edit') {
+            // CONVERT MODEL NAMES SAME AS FIELD NAMES
+            _.each($scope.json.fields, function(n) {
+                data[n.tableRef] = n.model;
+            });
+            $scope.formData = data;
+            console.log($scope.formData);
+        } else {
+            $scope.formData = $scope.json.editData;
+        }
+
         $scope.apiName = $scope.json.apiCall.url;
 
         // CALL GENERAL API
         NavigationService.saveApi($scope.formData, $scope.apiName, function(data) {
-            console.log(data);
+
+            console.log($scope.json.jsonPage);
+
             // showToast("Project Saved Successfully");
             console.log("Success");
-
+            $state.go("page", {
+                jsonName: $scope.json.jsonPage
+            });
         }, function() {
             // showToast("Error saving the Project");
             console.log("Fail");

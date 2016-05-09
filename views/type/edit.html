@@ -10,16 +10,22 @@
 
                     <form name="plan">
                         <div class="form-group" ng-repeat="field in json.fields track by $index">
+                          <!-- <div ng-repeat="field in json.editData track by $index"> -->
                             <div ng-if="field.type=='text' || field.type=='email'">
+
                                 <label for="{{field.id}}">{{field.name}}</label>
-                                <input  ng-model="field.model" type={{field.type}} class="form-control" id="{{field.id}}" placeholder="{{field.placeholder}}">
+                                <input  ng-model="json.editData[field.model]" type={{field.type}} class="form-control" id="{{field.id}}" placeholder="{{field.placeholder}}" >
                             </div>
 
                             <!-- // SELECT -->
                             <div ng-if="field.type=='selectFromTable'">
                                 <label for="{{field.id}}">{{field.name}} </label>
-                                <br>{{optionitem}}
-                                <select ng-model="field.model" ng-options="item._id as item.name for item in field.url">
+                                <br>
+                                <!-- <select ng-model="json.editData[field.model]" ng-selected="{{ json.editData[field.model].Selected == true }}" ng-options="item._id as item.name for item in field.url"> -->
+                                <select ng-model="json.editData[field.model]" >
+                                  <option ng-repeat="item in field.url" value="{{item._id}}"  ng-selected="{{ item.name.Selected == true }}">
+                                    {{item.name}}
+                              </option>
                                 </select>
                                 <br>
                             </div>
@@ -27,10 +33,11 @@
                             <div ng-if="field.type=='select'">
                                 <label for="{{field.id}}">{{field.name}} </label>
                                 <br>{{optionitem}}
-                                <select ng-model="field.model" ng-options="item.name as item.name for item in field.url">
+                                <select ng-model="json.editData[field.model]" value="json.editData.team" ng-options="item.name as item.name for item in field.url">
                                 </select>
                                 <br>
                             </div>
+                            <!-- </div> -->
                         </div>
                         <!-- <div class="form-group">
               {{results[json.fields.tableRef]}}
