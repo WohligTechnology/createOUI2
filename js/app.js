@@ -67,12 +67,12 @@ firstapp.filter('uploadpath', function() {
 
 firstapp.filter('getValue', function() {
     return function(input, keyVal) {
-        var keyArr = keyVal.split(".");
-        var returnValue = input;
-        _.each(keyArr, function(n) {
-            returnValue = returnValue[n];
-        });
-        return returnValue;
+          var keyArr = keyVal.split(".");
+          var returnValue = input;
+          _.each(keyArr, function(n) {
+              returnValue = returnValue[n];
+          });
+          return returnValue;
     };
 });
 

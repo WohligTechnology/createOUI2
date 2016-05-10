@@ -4,11 +4,6 @@
     "pageType": "view",
     "fields": [
       {
-        "name":"Id",
-        "isSort":"",
-        "tableRef":"_id"
-      },
-      {
         "name":"Name",
         "isSort":"",
         "tableRef":"name"
@@ -82,5 +77,6 @@
     "apiCall": {
         "url": "creato/findLimited",
         "params": ""
-    }
+    },
+    "createButtonState":"page({jsonName:'createUser'})"
 }

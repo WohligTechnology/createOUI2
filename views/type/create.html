@@ -16,8 +16,14 @@
                             <!-- // SELECT -->
                             <div ng-if="field.type=='selectFromTable'">
                                 <label for="{{field.id}}">{{field.name}} </label>
-                                <br>{{optionitem}}
-                                <select ng-model="field.model" ng-options="item._id as item.name for item in field.url">
+                                <br>
+                                <!-- <select ng-model="field.model" ng-options="item._id as item.name for item in field.url">
+                                </select> -->
+                                <select ng-model="field.model" >
+                                 <option value="">SELECT</option>
+                                    <option ng-repeat="item in field.url" value="{{item._id}}">
+                                        {{item.name}}
+                                    </option>
                                 </select>
                                 <br>
                             </div>
@@ -25,8 +31,9 @@
                             <div ng-if="field.type=='select'">
                                 <label for="{{field.id}}">{{field.name}} </label>
                                 <br>{{optionitem}}
-                                <select ng-model="field.model" ng-options="item.name as item.name for item in field.url">
+                                <select ng-model="field.model" ng-options="item.value as item.name for item in field.url">
                                 </select>
+
                                 <br>
                             </div>
                             <!-- <div ng-if="field.type=='image'">
@@ -39,7 +46,7 @@
                         </div>
                         <div class="upload-img text-center mar30">
                             <button class="btn btn-sm btn-info" ng-class="{'disabled' : !plan.$valid }" ng-click="makeReadyForApi()">Save</button>
-                            <a ui-sref="plan()">
+                            <a ui-sref="{{json.action[1].stateName}}">
                                 <button class="btn btn-sm btn-info">Cancel</button>
                             </a>
                         </div>

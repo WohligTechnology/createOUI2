@@ -1,5 +1,6 @@
 {
     "title": "Create User",
+      "jsonPage":"userView",
     "desciption": "",
     "pageType": "create",
     "fields": [{
@@ -24,11 +25,12 @@
             "tableRef": "accesslevel",
             "placeholder": "Enter accesslevel",
             "id": "input3",
-            "model": "email",
             "validation": [],
             "url": [{
+              "value":"admin",
                 "name": "Admin"
             }, {
+              "value":"operator",
                 "name": "Operator"
             }]
         }, {
@@ -40,20 +42,14 @@
             "model": "team",
             "validation": [],
             "url": [{
-                "_id": "5726e343c150b33309f5bfa6",
-                "timestamp": "2016-05-02T05:18:59.646Z",
-                "name": "India",
-                "__v": 0
+                "_id": "572ca0bb96ef92d30fc29894",
+                "name": "Aus"
             }, {
-                "_id": "5726e37bc150b33309f5bfa7",
-                "timestamp": "2016-05-02T05:19:55.711Z",
-                "name": "Pakistan",
-                "__v": 0
+                "_id": "572ca0d796ef92d30fc29895",
+                "name": "Pakistan"
             }, {
-                "_id": "57273d56b425f3af06b41004",
-                "timestamp": "2016-05-02T11:43:18.887Z",
-                "name": "aus",
-                "__v": 0
+                "_id": "573025eb42975d94058789de",
+                "name": "KKR"
             }]
         }, {
             "name": "Image",
@@ -72,7 +68,7 @@
         "action": "submitUser"
     }, {
         "name": "cancel",
-        "url": "http://192.168.1.127:1337/Accounts/saveData"
+        "stateName":"page({jsonName:'userView'})"
     }],
 
     "apiCall": {
