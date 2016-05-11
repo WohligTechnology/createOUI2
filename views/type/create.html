@@ -36,13 +36,15 @@
 
                                 <br>
                             </div>
-                            <!-- <div ng-if="field.type=='image'">
-                                <label for="">Upload Image</label>
-                                <div ng-if="field.image">
-                                    <img ng-src="{{field.image|uploadpath}}">
-                                </div>
 
-                            </div> -->
+                            <div ng-if="field.type=='image'">
+                                <label for="">Upload Image</label>
+
+                                    <!-- <img ng-src="{{field.image|uploadpath}}"> -->
+                                    <upload-image ng-model="field.model"></upload-image>
+
+
+                            </div>
                         </div>
                         <div class="upload-img text-center mar30">
                             <button class="btn btn-sm btn-info" ng-class="{'disabled' : !plan.$valid }" ng-click="makeReadyForApi()">Save</button>

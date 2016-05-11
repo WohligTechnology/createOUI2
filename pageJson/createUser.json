@@ -59,7 +59,8 @@
             "id": "input5",
             "model": "",
             "validation": [],
-            "url": ""
+            "url": "",
+            "model":"image1"
         }
 
     ],

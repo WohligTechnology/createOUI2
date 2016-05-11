@@ -1,7 +1,7 @@
 var adminURL = "http://wohlig.io:81/";
 var mockURL = adminURL + "callApi/";
 
-angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ngSanitize', 'ngMaterial', 'ngMdIcons', 'ui.sortable', 'angular-clipboard'])
+angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ngSanitize', 'ngMaterial', 'ngMdIcons', 'ui.sortable', 'angular-clipboard', 'imageupload'])
 
 .controller('LoginCtrl', function($scope, TemplateService, NavigationService, $timeout) {
     $scope.menutitle = NavigationService.makeactive("Login");
@@ -53,20 +53,17 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.json = data;
         console.log($scope.json);
         if (data.pageType == "create") {
-          _.each($scope.json.fields,function(n) {
-            if(n.type=="select")
-            {
-              n.model="";
-              n.url.unshift({
-                "value":"",
-                  "name": "SELECT"
-              });
-            }
-            else if(n.type=="selectFromTable")
-            {
-              n.model="";
-            }
-          });
+            _.each($scope.json.fields, function(n) {
+                if (n.type == "select") {
+                    n.model = "";
+                    n.url.unshift({
+                        "value": "",
+                        "name": "SELECT"
+                    });
+                } else if (n.type == "selectFromTable") {
+                    n.model = "";
+                }
+            });
 
         } else if (data.pageType == "edit") {
             console.log(urlParams);
@@ -134,21 +131,25 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.apiName = $scope.json.apiCall.url;
 
         // CALL GENERAL API
-        NavigationService.saveApi($scope.formData, $scope.apiName, function(data) {
+        // NavigationService.saveApi($scope.formData, $scope.apiName, function(data) {
+        //
+        //     console.log($scope.json.jsonPage);
+        //
+        //     // showToast("Project Saved Successfully");
+        //     console.log("Success");
+        //     $state.go("page", {
+        //         jsonName: $scope.json.jsonPage
+        //     });
+        // }, function() {
+        //     // showToast("Error saving the Project");
+        //     console.log("Fail");
+        // });
 
-            console.log($scope.json.jsonPage);
 
-            // showToast("Project Saved Successfully");
-            console.log("Success");
-            $state.go("page", {
-                jsonName: $scope.json.jsonPage
-            });
-        }, function() {
-            // showToast("Error saving the Project");
-            console.log("Fail");
-        });
+    };
 
-
+    $scope.changeit = function(image) {
+        console.log(image);
     };
 
 })
