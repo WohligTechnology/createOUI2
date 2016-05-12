@@ -19,8 +19,8 @@
                                 <br>
                                 <!-- <select ng-model="field.model" ng-options="item._id as item.name for item in field.url">
                                 </select> -->
-                                <select ng-model="field.model" >
-                                 <option value="">SELECT</option>
+                                <select ng-model="field.model">
+                                    <option value="">SELECT</option>
                                     <option ng-repeat="item in field.url" value="{{item._id}}">
                                         {{item.name}}
                                     </option>
@@ -38,10 +38,12 @@
                             </div>
 
                             <div ng-if="field.type=='image'">
+
+                              {{field}}
                                 <label for="">Upload Image</label>
 
-                                    <!-- <img ng-src="{{field.image|uploadpath}}"> -->
-                                    <upload-image ng-model="field.model"></upload-image>
+                                <!-- <img ng-src="{{field.image|uploadpath}}"> -->
+                                <upload-image ng-model="field.model"></upload-image>
 
 
                             </div>

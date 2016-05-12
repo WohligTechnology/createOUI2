@@ -44,20 +44,20 @@ firstapp.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
         controller: 'jsonViewCtrl'
     });
 
-    $urlRouterProvider.otherwise("/projects");
+    $urlRouterProvider.otherwise("/page/userView");
 
 });
 
 firstapp.filter('uploadpath', function() {
     return function(input, width, height, style) {
         var other = "";
-        if (width && width != "") {
+        if (width && width !== "") {
             other += "&width=" + width;
         }
-        if (height && height != "") {
+        if (height && height !== "") {
             other += "&height=" + height;
         }
-        if (style && style != "") {
+        if (style && style !== "") {
             other += "&style=" + style;
         }
         if (input) {
@@ -127,7 +127,7 @@ firstapp.directive('uploadImage', function($http,$filter) {
             $scope.clearOld = function() {
                 $scope.model = [];
             };
-            $scope.uploadNow = function(image) {
+            $scope.upload = function(image) {
                 var Template = this;
                 image.hide = true;
                 var formData = new FormData();

@@ -1,4 +1,5 @@
 var adminURL = "http://wohlig.io:81/";
+window.uploadurl = "http://192.168.1.122:81/" + "upload/";
 var mockURL = adminURL + "callApi/";
 
 angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ngSanitize', 'ngMaterial', 'ngMdIcons', 'ui.sortable', 'angular-clipboard', 'imageupload'])
