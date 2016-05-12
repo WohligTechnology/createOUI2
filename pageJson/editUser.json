@@ -62,6 +62,17 @@
             "_id": "573025eb42975d94058789de",
             "name": "KKR"
         }]
+    },
+     {
+        "name": "Image",
+        "type": "image",
+        "tableRef": "image",
+        "placeholder": "Enter image",
+        "id": "input5",
+        "model": "",
+        "validation": [],
+        "url": "",
+        "model":"image1"
     }],
     "action": [{
         "name": "submit",

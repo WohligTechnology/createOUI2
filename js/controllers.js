@@ -132,19 +132,19 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.apiName = $scope.json.apiCall.url;
 
         // CALL GENERAL API
-        // NavigationService.saveApi($scope.formData, $scope.apiName, function(data) {
-        //
-        //     console.log($scope.json.jsonPage);
-        //
-        //     // showToast("Project Saved Successfully");
-        //     console.log("Success");
-        //     $state.go("page", {
-        //         jsonName: $scope.json.jsonPage
-        //     });
-        // }, function() {
-        //     // showToast("Error saving the Project");
-        //     console.log("Fail");
-        // });
+        NavigationService.saveApi($scope.formData, $scope.apiName, function(data) {
+
+            console.log($scope.json.jsonPage);
+
+            // showToast("Project Saved Successfully");
+            console.log("Success");
+            $state.go("page", {
+                jsonName: $scope.json.jsonPage
+            });
+        }, function() {
+            // showToast("Error saving the Project");
+            console.log("Fail");
+        });
 
 
     };
