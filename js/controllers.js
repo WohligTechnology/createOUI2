@@ -22,7 +22,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     };
 })
 
-.controller('jsonViewCtrl', function($scope, TemplateService, NavigationService, $timeout, $stateParams, $http, $state, $filter) {
+.controller('jsonViewCtrl', function($scope, TemplateService, NavigationService, $timeout, $stateParams, $http, $state, $filter,$mdDialog) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("users");
     $scope.menutitle = NavigationService.makeactive("Users");
@@ -42,6 +42,26 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     var jsonParam8 = jsonArr[8];
     var jsonParam9 = jsonArr[9];
     console.log(jsonArr);
+
+    $scope.confirm = function(title,content,api,data) {
+      var confirm = $mdDialog.confirm()
+          .title(title)
+          .textContent(content)
+          .ok('Confirm')
+          .cancel('Cancel');
+      $mdDialog.show(confirm).then(function() {
+          $http.post(api,data).success(function(data) {
+              $state.reload();
+              showToast("Deleted Successfully");
+          }, function() {
+              showToast("Error Deleting");
+          });
+      }, function() {
+
+      });
+    };
+
+
     $http.get("./pageJson/" + jsonName + ".json").success(function(data) {
 
 
@@ -96,11 +116,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     // ACTION
     $scope.performAction = function(action, result) {
-
+        var pageURL = "";
         // FOR EDIT
-        if (action.jsonPage == "editUser") {
-
-            var pageURL = action.jsonPage;
+        if (action.action == 'redirect') {
+            pageURL = action.jsonPage;
             if (action.fieldsToSend) {
                 _.each(action.fieldsToSend, function(n) {
                     pageURL += "¢" + $filter("getValue")(result, n);
@@ -109,8 +128,15 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $state.go("page", {
                 jsonName: pageURL
             });
-
-
+        } else if(action.action == 'apiCallConfirm') {
+          pageURL = adminurl+action.api;
+          var data = {};
+          if (action.fieldsToSend) {
+              _.each(action.fieldsToSend, function(n) {
+                  data[n.name]=$filter("getValue")(result, n.value);
+              });
+          }
+          $scope.confirm(action.title,action.content,pageURL,data);
         }
     };
 

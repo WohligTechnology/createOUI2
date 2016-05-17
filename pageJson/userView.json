@@ -30,7 +30,7 @@
         "name":"edit",
         "icon":"mode_edit",
         "color":"blue",
-        "action":"editUser",
+        "action":"redirect",
         "jsonPage":"editUser",
         "fieldsToSend":["_id","name"],
         "callFindOne":"creato/findOne"
@@ -39,7 +39,20 @@
         "name":"delete",
         "icon":"delete",
         "color":"red",
-        "action":"deleteUser"
+        "action":"apiCallConfirm",
+        "title":"Delete User",
+        "content":"Are you sure you want to delete user?",
+        "api":"creato/delete",
+        "fieldsToSend":[
+          {
+            "name":"_id",
+            "value":"_id"
+          },
+          {
+            "name":"name",
+            "value":"name"
+          }
+        ]
       },
       {
         "name":"print",
