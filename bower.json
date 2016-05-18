@@ -1,5 +1,5 @@
 {
-  "name": "Framework2UI",
+  "name": "framework2ui",
   "version": "0.0.1",
   "homepage": "https://www.wohlig.com",
   "authors": [
@@ -33,7 +33,10 @@
     "angular-ui-sortable": "~0.13.4",
     "angular-clipboard": "~1.2.1",
     "js-beautify": "https://github.com/beautify-web/js-beautify.git#~1.5.10",
-    "angularjs-imageupload-directive": "https://github.com/Mischi/angularjs-imageupload-directive.git"
+    "angularjs-imageupload-directive": "https://github.com/Mischi/angularjs-imageupload-directive.git",
+    "angular-ui-select": "^0.17.1",
+    "tinymce": "^4.3.12",
+    "angular-ui-tinymce": "https://github.com/angular-ui/ui-tinymce.git#^0.0.16"
   },
   "resolutions": {
     "angular": "1.4.8"

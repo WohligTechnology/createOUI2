@@ -1,6 +1,6 @@
 {
     "title": "Create User",
-      "jsonPage":"userView",
+    "jsonPage": "userView",
     "desciption": "",
     "pageType": "create",
     "fields": [{
@@ -27,10 +27,10 @@
             "id": "input3",
             "validation": [],
             "url": [{
-              "value":"admin",
+                "value": "admin",
                 "name": "Admin"
             }, {
-              "value":"operator",
+                "value": "operator",
                 "name": "Operator"
             }]
         }, {
@@ -52,15 +52,26 @@
                 "name": "KKR"
             }]
         }, {
-            "name": "Image",
-            "type": "image",
-            "tableRef": "image",
-            "placeholder": "Enter image",
+            "name": "textarea",
+            "type": "tinymce",
+            "tableRef": "textarea",
+            "placeholder": "Enter TextArea",
             "id": "input5",
             "model": "",
             "validation": [],
             "url": "",
-            "model":"image1"
+            "model": "image1"
+        },
+        {
+            "name": "Image",
+            "type": "image",
+            "tableRef": "image",
+            "placeholder": "Enter image",
+            "id": "input6",
+            "model": "",
+            "validation": [],
+            "url": "",
+            "model": "image1"
         }
 
     ],
@@ -69,7 +80,7 @@
         "action": "submitUser"
     }, {
         "name": "cancel",
-        "stateName":"page({jsonName:'userView'})"
+        "stateName": "page({jsonName:'userView'})"
     }],
 
     "apiCall": {
