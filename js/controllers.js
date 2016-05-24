@@ -2,7 +2,7 @@ var adminURL = "http://wohlig.io:81/";
 window.uploadurl = "http://192.168.1.122:81/" + "upload/";
 var mockURL = adminURL + "callApi/";
 
-angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ngSanitize', 'ngMaterial', 'ngMdIcons', 'ui.sortable', 'angular-clipboard', 'imageupload','ui.tinymce'])
+angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ngSanitize', 'ngMaterial', 'ngMdIcons', 'ui.sortable', 'angular-clipboard', 'imageupload', 'ui.tinymce'])
 
 .controller('LoginCtrl', function($scope, TemplateService, NavigationService, $timeout) {
     $scope.menutitle = NavigationService.makeactive("Login");
@@ -22,7 +22,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     };
 })
 
-.controller('jsonViewCtrl', function($scope, TemplateService, NavigationService, $timeout, $stateParams, $http, $state, $filter,$mdDialog) {
+.controller('jsonViewCtrl', function($scope, TemplateService, NavigationService, $timeout, $stateParams, $http, $state, $filter, $mdDialog) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("users");
     $scope.menutitle = NavigationService.makeactive("Users");
@@ -45,27 +45,30 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     var jsonParam9 = jsonArr[9];
     console.log(jsonArr);
 
-    $scope.confirm = function(title,content,api,data) {
-      var confirm = $mdDialog.confirm()
-          .title(title)
-          .textContent(content)
-          .ok('Confirm')
-          .cancel('Cancel');
-      $mdDialog.show(confirm).then(function() {
-          $http.post(api,data).success(function(data) {
-              $state.reload();
-              showToast("Deleted Successfully");
-          }, function() {
-              showToast("Error Deleting");
-          });
-      }, function() {
+    $scope.confirm = function(title, content, api, data) {
+        var confirm = $mdDialog.confirm()
+            .title(title)
+            .textContent(content)
+            .ok('Confirm')
+            .cancel('Cancel');
+        $mdDialog.show(confirm).then(function() {
+            $http.post(api, data).success(function(data) {
+                $state.reload();
+                showToast("Deleted Successfully");
+            }, function() {
+                showToast("Error Deleting");
+            });
+        }, function() {
 
-      });
+        });
     };
 
 
     $http.get("./pageJson/" + jsonName + ".json").success(function(data) {
 
+        if (data.defaultActive) {
+            $scope.defaultActive = data.defaultActive;
+        }
 
         _.each(data.urlFields, function(n, key) {
             urlParams[n] = jsonArr[key + 1];
@@ -74,9 +77,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 
         $scope.json = data;
-        if($scope.json.sidemenu && $scope.json.sidemenu.length > 0)
-        {
-          $scope.sidemenuThere = true;
+        if ($scope.json.sidemenu && $scope.json.sidemenu.length > 0) {
+            $scope.sidemenuThere = true;
         }
         console.log($scope.json);
         if (data.pageType == "create") {
@@ -134,15 +136,28 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $state.go("page", {
                 jsonName: pageURL
             });
-        } else if(action.action == 'apiCallConfirm') {
-          pageURL = adminurl+action.api;
-          var data = {};
-          if (action.fieldsToSend) {
-              _.each(action.fieldsToSend, function(n) {
-                  data[n.name]=$filter("getValue")(result, n.value);
-              });
-          }
-          $scope.confirm(action.title,action.content,pageURL,data);
+        } else if (action.action == 'apiCallConfirm') {
+            pageURL = adminurl + action.api;
+            var data = {};
+            if (action.fieldsToSend) {
+                _.each(action.fieldsToSend, function(n) {
+                    data[n.name] = $filter("getValue")(result, n.value);
+                });
+            }
+            $scope.confirm(action.title, action.content, pageURL, data);
+        } else if (action.action == 'sidemenuRedirect') {
+            pageURL = action.jsonPage;
+            if (action.fieldsToSend) {
+                _.each(action.fieldsToSend, function(n) {
+                    pageURL += "¢" + jsonArr[n];
+                });
+            }
+            $state.go("page", {
+                jsonName: pageURL
+            });
+        }
+        else if (action.action === 'changeActive') {
+            $scope.defaultActive = action.active;
         }
     };
 

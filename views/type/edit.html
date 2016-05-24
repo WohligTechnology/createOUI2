@@ -9,7 +9,7 @@
                 <div class="col-md-8">
 
                     <form name="plan">
-                        <div class="form-group" ng-repeat="field in json.fields">
+                        <div class="form-group" ng-repeat="field in json.fields" ng-show="field.active == defaultActive" >
                             <!-- <div ng-repeat="field in json.editData track by $index"> -->
                             <div ng-if="field.type=='text' || field.type=='email'">
 
@@ -45,7 +45,7 @@
 
                             <div ng-if="field.type=='image'">
 
-                          
+
                                 <label for="">Upload Image</label>
 
                                 <!-- <img ng-src="{{field.image|uploadpath}}"> -->
