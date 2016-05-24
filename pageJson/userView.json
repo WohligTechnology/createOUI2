@@ -91,5 +91,6 @@
         "url": "creato/findLimited",
         "params": ""
     },
+    
     "createButtonState":"page({jsonName:'createUser'})"
 }

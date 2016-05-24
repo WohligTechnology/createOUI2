@@ -91,9 +91,10 @@
         "params": "_id"
     },
     "sidemenu": [{
-        "url": "",
-        "anchor": "",
-        "state": "",
-        "action": ""
-    }]
+      "name":"Photo Gallery",
+      "action":"redirect",
+      "jsonPage":"editUser",
+      "fieldsToSend":["id"],
+      "callFindOne":"creato/findOne"
+    }],
 }

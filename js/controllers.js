@@ -32,6 +32,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     var jsonName = jsonArr[0];
     var urlParams = {};
 
+    $scope.sidemenuVal = $stateParams;
+
     var jsonParam1 = jsonArr[1];
     var jsonParam2 = jsonArr[2];
     var jsonParam3 = jsonArr[3];
@@ -72,6 +74,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 
         $scope.json = data;
+        if($scope.json.sidemenu && $scope.json.sidemenu.length > 0)
+        {
+          $scope.sidemenuThere = true;
+        }
         console.log($scope.json);
         if (data.pageType == "create") {
             _.each($scope.json.fields, function(n) {

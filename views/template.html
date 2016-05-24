@@ -11,9 +11,9 @@
             <div class="template content" ng-include="template.content" ng-if="!sidemenuThere"></div>
 
 
-            <div layout="column" class="zero">
-                <div flex="66" class="template content"  ng-include="template.content" ></div>
-                <div flex="33" class="template sidemenu"  ng-include="template.sidemenu"></div>
+            <div layout="row" ng-if="sidemenuThere">
+                <div flex="80" layout-margin="0 20px 0 0" class="template content"  ng-include="template.content" ></div>
+                <div flex="20" class="template sidemenu"  ng-include="template.sidemenu"></div>
             </div>
 
             <footer>
